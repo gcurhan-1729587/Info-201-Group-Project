@@ -4,13 +4,7 @@ library(plotly)
 library(dplyr)
 data_2015 <- read.csv("../Data/WH15.csv")
 data_2016 <- read.csv("../Data/WH16.csv")
-dataset_2017 <- read.csv("../Data/WH17.csv")
-data_2017 <- dataset_2017 %>%
-  filter(Country %in% data_2016$Country) 
-temp <- filter(data_2016, Country %in% dataset_2017$Country) %>%
-  select(Region, Country)
-data_2017 <- left_join(dataset_2017,temp)
-write.csv(data_2017, "../Data/WH17.csv")
+data_2017 <- read.csv("../Data/WH17.csv")
 
 my_ui <- fluidPage(
   titlePanel("Life Expectancy vs. GDP"),
