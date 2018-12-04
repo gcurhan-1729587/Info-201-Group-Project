@@ -1,0 +1,8 @@
+library(shiny)
+library(ggplot2)
+library(plotly)
+library(dplyr)
+data_2015 <- read.csv("Data/WH15.csv")
+data_2016 <- read.csv("Data/WH16.csv")
+data_2017 <- read.csv("Data/WH17.csv")
+shinyApp(ui = my_ui, server = my_server)
