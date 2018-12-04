@@ -17,16 +17,6 @@ happ15 <- read.csv("../../Data/WH15.csv")
 shinyServer(function(input, output) {
   
   output$freePlot <- renderPlot({
-    
-    if(input$select_year == "2017") {
-      year <- happ17
-    }
-    else if (input$select_year == "2016") {
-      year <- happ16
-    }
-    else {
-      year <- happ15
-    }
     ggplot(data = year) +
       geom_smooth(aes(x = Freedom, y = Happiness.Score)) +
       geom_point(aes(x = Freedom, y = Happiness.Score, color = Trust..Government.Corruption.)) +
