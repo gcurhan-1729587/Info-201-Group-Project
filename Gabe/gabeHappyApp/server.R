@@ -34,7 +34,7 @@ shinyServer(function(input, output) {
     }
    else if(input$region_select == "Middle East and Nothern Africa"){
     region <- happy_info %>%
-      filter(Region == "Middle East and Nothern Africa")
+      filter(Region == "Middle East and Northern Africa")
     }
    else if(input$region_select == "North America"){
     region <- happy_info %>%
@@ -48,6 +48,7 @@ shinyServer(function(input, output) {
       region <- happy_info %>%
         filter(Region == "Southern Asia")
     }
+    
     else {
       region <- happy_info %>%
         filter(Region == "Sub-Saharan Africa")
