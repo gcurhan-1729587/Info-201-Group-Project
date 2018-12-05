@@ -5,7 +5,7 @@
 ## Project Description  
 
 The dataset we are working with was found on Kaggle.com, called the “World  Happiness Report”. The data was collected through the Gallup World Poll. It has been collected annually since 2012, and we are using the 2015 dataset, as it has the most data available. This report has gained attention from experts in various fields across the world.  It can be of interest to economists, psychologists, policymakers, and more. This data and the analyzation of it could have a major effect on the prioritization of certain issues  in a country by their leaders. We’re going to target the leaders of countries. If a leader of a country were to look at reports made from this data, they may  realize that the overall level of happiness is dissatisfying, and they could see the attributing factors to said unhappiness and attempt to fix these problems. Potential questions that may be of interest to world leaders include: 
-* Do nations with higher GDP have generosity contribute more towards the overall  happiness score? 
+* Do nations with higher GDP have generosity contribute more towards the overall happiness score? 
 	* What about the “family” contribution? 
 * Which one factor should a nation focus on in order to boost its overall happiness score the greatest?  
 	* What specific changes would a nation have to make in order to effect this factor?  
