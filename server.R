@@ -7,7 +7,7 @@ library(DT)
 
 server <- function(input, output) {
   selectedData <- reactive({
-    dataPath <- paste0("Data/WH", input$year, ".csv")
+    dataPath <- paste0("Data/", input$year, ".csv")
     data <- read.csv(dataPath)
     if (input$region != "All") {
       data <- filter(data, Region == input$region)
@@ -43,9 +43,9 @@ server <- function(input, output) {
       scale_color_gradient(low = "blue", high = "yellow") +
       labs(
         title = "Correlations: Happiness, Freedom, and Government Trust", 
-        x = "Freedom", 
+        x = "Freedom (%)", 
         y = "Happiness Score",
-        color = "Trust in Gov."
+        color = "Trust in Gov. (%)"
       )
   })
   
@@ -56,16 +56,24 @@ server <- function(input, output) {
       coord_flip() +
       labs(title = "Happiness Score Boxplot",
            x = "Country",
-           y = "Happiness Score")
+           y = "Happiness Score",
+           fill = "Generosity (%)") 
+  })
+  
+  output$plot.ui <- renderUI({
+    plotOutput("genPlot", height = paste0(100 + nrow(selectedData()) * 20, "px"))
   })
 
   output$conclusion = DT::renderDataTable({
     data <- selectedData() %>%
       select(Country, Happiness.Rank, Happiness.Score, Region) %>%
       rename("Happiness Rank" = Happiness.Rank) %>%
-      rename("Happiness Score" = Happiness.Score)
-    DT::datatable(data, options = list(lengthMenu = c(5, 10, 15)))
+      rename("Happiness Score" = Happiness.Score) %>% 
+      mutate_if(is.numeric, ~round(., 3))
+    DT::datatable(data, options = list(lengthMenu = c(10, 20, 30)))
   })
+  
+  
 }
 
 shinyServer(server)
