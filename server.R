@@ -3,12 +3,16 @@ library(ggplot2)
 library(dplyr)
 library(plotly)
 library(data.table)
+library(DT)
 
 server <- function(input, output) {
   selectedData <- reactive({
     dataPath <- paste0("Data/WH", input$year, ".csv")
-    data <- read.csv(dataPath) %>%
-      subset()
+    data <- read.csv(dataPath)
+    if (input$region != "All") {
+      data <- filter(data, Region == input$region)
+    }
+    return(data)
   })
   
   output$heatPlot <- renderPlot({
@@ -36,13 +40,31 @@ server <- function(input, output) {
     ggplot(data = selectedData()) +
       geom_smooth(aes(x = Freedom, y = Happiness.Score)) +
       geom_point(aes(x = Freedom, y = Happiness.Score, color = Trust..Government.Corruption.)) +
-      scale_color_gradient(low = "yellow", high = "blue") +
+      scale_color_gradient(low = "blue", high = "yellow") +
       labs(
         title = "Correlations: Happiness, Freedom, and Government Trust", 
         x = "Freedom", 
         y = "Happiness Score",
         color = "Trust in Gov."
       )
+  })
+  
+  output$genPlot <- renderPlot({
+    ggplot(data = selectedData()) + 
+      geom_bar(aes(x = reorder(Country, Happiness.Score), fill = Generosity, weight = Happiness.Score)) + 
+      scale_fill_gradient(low = "green", high = "red") +
+      coord_flip() +
+      labs(title = "Happiness Score Boxplot",
+           x = "Country",
+           y = "Happiness Score")
+  })
+
+  output$conclusion = DT::renderDataTable({
+    data <- selectedData() %>%
+      select(Country, Happiness.Rank, Happiness.Score, Region) %>%
+      rename("Happiness Rank" = Happiness.Rank) %>%
+      rename("Happiness Score" = Happiness.Score)
+    DT::datatable(data, options = list(lengthMenu = c(5, 10, 15)))
   })
 }
 
