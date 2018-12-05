@@ -5,9 +5,6 @@ account: stm7631
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 604543
-bundleId: 1741741
+bundleId: 1744056
 url: https://stm7631.shinyapps.io/Info-201-Group-Project/
-when: 1543994663.52143
-asMultiple: FALSE
-asStatic: FALSE
-ignoredFiles: .RData|Proposal.pdf|README.md|Data/2016.csv|Data/2017.csv|Sanjay/app.R|Sanjay/dotgraph.R|Sanjay/server.R|Sanjay/ui.R|Shane/.RData|Shane/.Rhistory|Shane/app.R|Shane/server.R|Shane/ui.R|Torin/freverApp/.Rhistory|Torin/freverApp/server.R|Torin/freverApp/ui.R
+when: 1544050020.28243
