@@ -1,8 +1,12 @@
+# Plotly requires seperate initalization.
+library(plotly)
+
 ui <- fluidPage(
   theme = "shiny.css",
   titlePanel("World Happiness Report"),
   sidebarLayout(
     sidebarPanel(
+      # Widgets to select year and region.
       selectInput("year", "Select Year", choices = c("2015", "2016", "2017")),
       selectInput("region", 
                   ("Select Region"), 
@@ -21,6 +25,7 @@ ui <- fluidPage(
       width = 2
     ),
     mainPanel(
+      # Seperates all visualizations into tabs.
       tabsetPanel(type = "tabs",
                   tabPanel("Overview", plotOutput("heatPlot"), includeMarkdown("Analysis/overview.md")),
                   tabPanel("GDP Scatterplot", plotlyOutput("gdpPlot"), includeMarkdown("Analysis/sanjay.md")),
