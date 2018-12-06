@@ -25,19 +25,18 @@ ui <- fluidPage(
       width = 3
     ),
     mainPanel(
-      # Seperates all visualizations into tabs.
+      # Seperates all visualizations into tabs. The overview heatmap isn't used as it is too large for shinyapps.io
+      # so a static image is displayed.
       tabsetPanel(type = "tabs",
-        tabPanel("Overview", plotOutput("heatPlot"), includeMarkdown("Analysis/overview.md")),
-        tabPanel("GDP Scatterplot", plotlyOutput("gdpPlot"), includeMarkdown("Analysis/sanjay.md")),
-        tabPanel("Trust Scatterplot", plotOutput("freePlot"), includeMarkdown("Analysis/torin.md")),
-        tabPanel("Generosity Bar Chart", uiOutput("plot.ui"), includeMarkdown("Analysis/gabe.md")),
-        tabPanel("Conclusion",  DT::dataTableOutput("conclusion"), includeMarkdown("Analysis/conclusion.md"))
+        tabPanel("Overview", img(src="heatmap.jpg", width = "700px"), includeHTML("Analysis/overview.HTML")),
+        tabPanel("GDP Scatterplot", plotlyOutput("gdpPlot"), includeHTML("Analysis/sanjay.HTML")),
+        tabPanel("Trust Scatterplot", plotOutput("freePlot"), includeHTML("Analysis/torin.HTML")),
+        tabPanel("Generosity Bar Chart", uiOutput("plot.ui"), includeHTML("Analysis/gabe.HTML")),
+        tabPanel("Conclusion",  DT::dataTableOutput("conclusion"), includeHTML("Analysis/conclusion.HTML"))
       )
     )
   )
 )
-
-
   
 shinyUI(ui)
 

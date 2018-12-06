@@ -5,6 +5,9 @@ account: stm7631
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 604543
-bundleId: 1744056
+bundleId: 1744261
 url: https://stm7631.shinyapps.io/Info-201-Group-Project/
-when: 1544050020.28243
+when: 1544054520.43846
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .RData|Proposal.pdf|README.md

@@ -4,7 +4,6 @@ library(dplyr)
 library(plotly)
 library(data.table)
 library(DT)
-library(openssl)
 
 server <- function(input, output) {
 
@@ -15,10 +14,11 @@ server <- function(input, output) {
     if (input$region != "All") {
       data <- filter(data, Region == input$region)
     }
-    return(data)
+    data <- subset(data)
   })
 
   # Plot of the world as a heatmap of overall happiness score.
+  # map_data("world") is too large for shinyapps.io so an image is displayed instead of this graph.
   output$heatPlot <- renderPlot({
     editedData <-selectedData() %>%
       mutate(Country = sub("United States", "USA",  Country)) %>%
